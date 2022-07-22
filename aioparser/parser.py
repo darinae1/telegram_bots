@@ -44,7 +44,7 @@ async def load_site_info():
 
                 page_info = BeautifulSoup(html_source, 'html.parser')
 
-                page = page_info.find_all('a', string = 'Д А Л Е Е!', href=True)
+                page = page_info.find_all('a', string='Д А Л Е Е!', href=True)
                 for href in page:
                     count_of_page = int(re.sub('[\\D]', '', href['href']))
             except Exception as ex:
@@ -60,12 +60,5 @@ async def load_site_info():
 
 async def run_tasks():
     global jokes_list
-
     await load_site_info()
-    for joke in jokes_list:
-        print(joke, '\n\n')
-    print(len(jokes_list))
-
-
-if __name__ == '__main__':
-    result = asyncio.get_event_loop().run_until_complete(run_tasks())
+    return jokes_list
